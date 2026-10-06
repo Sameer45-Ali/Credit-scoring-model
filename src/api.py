@@ -3,8 +3,16 @@ Production FastAPI Application for Credit Risk Decisioning.
 Exposes real-time scoring, batch evaluation, SHAP explainability, and health monitoring.
 """
 
+import sys
+from pathlib import Path
 from contextlib import asynccontextmanager
 from typing import Dict, Any
+
+# Ensure src modules are resolvable regardless of execution directory
+SRC_DIR = Path(__file__).resolve().parent
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
+
 from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 
