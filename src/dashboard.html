@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinTech Credit Underwriting & Risk Decisioning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #131b2e;
+      --card-border: #1e293b;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.15);
+      --warning: #f59e0b;
+      --warning-bg: rgba(245, 158, 11, 0.15);
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      max-width: 1200px;
+      width: 100%;
+    }
+    header {
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .badge-pill {
+      align-self: flex-start;
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 750px;
+      line-height: 1.5;
+    }
+    .presets-bar {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .presets-bar span {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .btn-preset {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-preset:hover {
+      background: #334155;
+      border-color: #475569;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 0.75rem;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+    label small {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    input, select {
+      background: #0b0f19;
+      border: 1px solid #27354f;
+      border-radius: 8px;
+      color: #fff;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    }
+    .btn-submit {
+      margin-top: 1.5rem;
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.85rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .btn-submit:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.35);
+    }
+    /* Results Styles */
+    .result-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .score-hero {
+      text-align: center;
+      background: #0b0f19;
+      border-radius: 14px;
+      border: 1px solid #1e293b;
+      padding: 1.75rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .score-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1;
+      margin: 0.5rem 0;
+      color: #60a5fa;
+    }
+    .score-range {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .decision-badge {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+      margin-top: 1rem;
+      text-transform: uppercase;
+    }
+    .status-APPROVED { background: var(--success-bg); color: var(--success); border: 1px solid var(--success); }
+    .status-APPROVED_WITH_CONDITIONS { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning); }
+    .status-MANUAL_REVIEW { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning); }
+    .status-REJECTED { background: var(--danger-bg); color: var(--danger); border: 1px solid var(--danger); }
+
+    .risk-tier-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+    }
+    .metrics-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .metric-box {
+      background: #0b0f19;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid #1e293b;
+    }
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .metric-val {
+      font-size: 1.3rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .adverse-section {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+    .adverse-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f87171;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+    }
+    .adverse-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .adverse-item {
+      font-size: 0.88rem;
+      color: #fca5a5;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .adverse-impact {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: #f87171;
+    }
+    .nav-links {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .nav-links a {
+      color: #60a5fa;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 0.5rem;
+    }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge-pill">Production AI Microservice</div>
+      <h1>Credit Risk Underwriting & Decisioning</h1>
+      <p class="subtitle">
+        Enter applicant financial metrics below or load a preset profile. 
+        The LightGBM model evaluates probability of default ($PD$), maps to FICO scores (300–850), 
+        and extracts TreeSHAP Adverse Action notices.
+      </p>
+    </header>
+
+    <div class="presets-bar">
+      <span>⚡ Quick Presets:</span>
+      <button class="btn-preset" onclick="loadPrimePreset()">🌟 Prime Borrower (Safe)</button>
+      <button class="btn-preset" onclick="loadNearPrimePreset()">⚖️ Near-Prime / Average</button>
+      <button class="btn-preset" onclick="loadSubprimePreset()">⚠️ Subprime Defaulter (High Risk)</button>
+    </div>
+
+    <div class="grid">
+      <!-- Input Form Card -->
+      <div class="card">
+        <div class="card-title">📝 Applicant Financial Profile</div>
+        <form id="scoringForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Credit Limit ($) <small>limit_balance</small></label>
+              <input type="number" id="limit_balance" value="120000" min="1000" step="1000" required />
+            </div>
+
+            <div class="form-group">
+              <label>Applicant Age <small>age (&ge; 18)</small></label>
+              <input type="number" id="age" value="34" min="18" max="100" required />
+            </div>
+
+            <div class="form-group">
+              <label>Education Level</label>
+              <select id="education">
+                <option value="1">1 - Graduate School</option>
+                <option value="2" selected>2 - University Degree</option>
+                <option value="3">3 - High School</option>
+                <option value="4">4 - Others</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Marital Status</label>
+              <select id="marriage">
+                <option value="1">1 - Married</option>
+                <option value="2" selected>2 - Single</option>
+                <option value="3">3 - Others</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label>Most Recent Repayment Status (September) <small>repayment_status_sept</small></label>
+              <select id="repayment_status_sept">
+                <option value="-1">Paid Duly / On-Time (-1)</option>
+                <option value="0" selected>Revolving Credit (0)</option>
+                <option value="1">Payment Delay: 1 Month (1)</option>
+                <option value="2">Payment Delay: 2 Months (2)</option>
+                <option value="3">Payment Delay: 3 Months (3)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Previous Month Status (August)</label>
+              <select id="repayment_status_aug">
+                <option value="-1">Paid Duly (-1)</option>
+                <option value="0" selected>Revolving Credit (0)</option>
+                <option value="1">Delay 1 Month (1)</option>
+                <option value="2">Delay 2 Months (2)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Two Months Ago Status (July)</label>
+              <select id="repayment_status_jul">
+                <option value="-1">Paid Duly (-1)</option>
+                <option value="0" selected>Revolving Credit (0)</option>
+                <option value="1">Delay 1 Month (1)</option>
+                <option value="2">Delay 2 Months (2)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Current Statement Bill ($) <small>bill_amt_sept</small></label>
+              <input type="number" id="bill_amt_sept" value="4500" min="0" step="100" required />
+            </div>
+
+            <div class="form-group">
+              <label>Amount Paid in September ($) <small>pay_amt_sept</small></label>
+              <input type="number" id="pay_amt_sept" value="4500" min="0" step="100" required />
+            </div>
+
+            <div class="form-group">
+              <label>Average Prior Bills ($) <small>6-month estimate</small></label>
+              <input type="number" id="bill_amt_avg" value="4000" min="0" step="100" required />
+            </div>
+
+            <div class="form-group">
+              <label>Average Prior Payments ($) <small>6-month estimate</small></label>
+              <input type="number" id="pay_amt_avg" value="3800" min="0" step="100" required />
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span>⚡ Evaluate & Score Applicant</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Live Output Card -->
+      <div class="card">
+        <div class="card-title">📊 Real-Time Underwriting Decision</div>
+        <div class="result-container" id="resultContainer">
+          <div class="score-hero">
+            <div class="score-range">FICO-EQUIVALENT CREDIT SCORE</div>
+            <div class="score-value" id="displayScore">---</div>
+            <div class="score-range">Standard Scoring Range: 300 to 850</div>
+            <div class="decision-badge" id="displayDecision">AWAITING EVALUATION</div>
+            <div class="risk-tier-text" id="displayTier">Click 'Evaluate' to run model</div>
+          </div>
+
+          <div class="metrics-summary">
+            <div class="metric-box">
+              <div class="metric-label">Probability of Default (PD)</div>
+              <div class="metric-val" id="displayPD">--%</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Credit Line Utilization</div>
+              <div class="metric-val" id="displayUtil">--%</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Payment-to-Bill Ratio</div>
+              <div class="metric-val" id="displayPayRatio">--x</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Delinquent Months</div>
+              <div class="metric-val" id="displayDelinq">--</div>
+            </div>
+          </div>
+
+          <div class="adverse-section" id="adverseSection" style="display: none;">
+            <div class="adverse-title">⚠️ Adverse Action Notices (TreeSHAP Explicability)</div>
+            <ul class="adverse-list" id="adverseList"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <span>Developer Resources:</span>
+      <a href="/docs" target="_blank">Interactive Swagger OpenAPI Docs</a> &bull;
+      <a href="/api/v1/model-info" target="_blank">Model Governance & Metrics JSON</a> &bull;
+      <a href="/health" target="_blank">Health Check API</a>
+    </div>
+  </div>
+
+  <script>
+    function loadPrimePreset() {
+      document.getElementById('limit_balance').value = 180000;
+      document.getElementById('age').value = 36;
+      document.getElementById('education').value = 1;
+      document.getElementById('marriage').value = 2;
+      document.getElementById('repayment_status_sept').value = -1;
+      document.getElementById('repayment_status_aug').value = -1;
+      document.getElementById('repayment_status_jul').value = -1;
+      document.getElementById('bill_amt_sept').value = 4000;
+      document.getElementById('pay_amt_sept').value = 4000;
+      document.getElementById('bill_amt_avg').value = 3500;
+      document.getElementById('pay_amt_avg').value = 3500;
+      document.getElementById('submitBtn').click();
+    }
+
+    function loadNearPrimePreset() {
+      document.getElementById('limit_balance').value = 60000;
+      document.getElementById('age').value = 29;
+      document.getElementById('education').value = 2;
+      document.getElementById('marriage').value = 2;
+      document.getElementById('repayment_status_sept').value = 0;
+      document.getElementById('repayment_status_aug').value = 0;
+      document.getElementById('repayment_status_jul').value = 0;
+      document.getElementById('bill_amt_sept').value = 12000;
+      document.getElementById('pay_amt_sept').value = 2500;
+      document.getElementById('bill_amt_avg').value = 11000;
+      document.getElementById('pay_amt_avg').value = 2000;
+      document.getElementById('submitBtn').click();
+    }
+
+    function loadSubprimePreset() {
+      document.getElementById('limit_balance').value = 15000;
+      document.getElementById('age').value = 24;
+      document.getElementById('education').value = 3;
+      document.getElementById('marriage').value = 1;
+      document.getElementById('repayment_status_sept').value = 2;
+      document.getElementById('repayment_status_aug').value = 2;
+      document.getElementById('repayment_status_jul').value = 1;
+      document.getElementById('bill_amt_sept').value = 16000;
+      document.getElementById('pay_amt_sept').value = 0;
+      document.getElementById('bill_amt_avg').value = 14500;
+      document.getElementById('pay_amt_avg').value = 400;
+      document.getElementById('submitBtn').click();
+    }
+
+    async function handleFormSubmit(event) {
+      if (event) event.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerText = 'Analyzing with LightGBM & SHAP...';
+
+      const billAvg = parseFloat(document.getElementById('bill_amt_avg').value) || 0;
+      const payAvg = parseFloat(document.getElementById('pay_amt_avg').value) || 0;
+
+      const payload = {
+        limit_balance: parseFloat(document.getElementById('limit_balance').value),
+        sex: 1,
+        education: parseInt(document.getElementById('education').value),
+        marriage: parseInt(document.getElementById('marriage').value),
+        age: parseInt(document.getElementById('age').value),
+        repayment_status_sept: parseInt(document.getElementById('repayment_status_sept').value),
+        repayment_status_aug: parseInt(document.getElementById('repayment_status_aug').value),
+        repayment_status_jul: parseInt(document.getElementById('repayment_status_jul').value),
+        repayment_status_jun: 0,
+        repayment_status_may: 0,
+        repayment_status_apr: 0,
+        bill_amt_sept: parseFloat(document.getElementById('bill_amt_sept').value),
+        bill_amt_aug: billAvg,
+        bill_amt_jul: billAvg,
+        bill_amt_jun: billAvg,
+        bill_amt_may: billAvg,
+        bill_amt_apr: billAvg,
+        pay_amt_sept: parseFloat(document.getElementById('pay_amt_sept').value),
+        pay_amt_aug: payAvg,
+        pay_amt_jul: payAvg,
+        pay_amt_jun: payAvg,
+        pay_amt_may: payAvg,
+        pay_amt_apr: payAvg
+      };
+
+      try {
+        const response = await fetch('/api/v1/score', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error('API Error: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        updateUI(data);
+      } catch (err) {
+        alert('Failed to score applicant: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>⚡ Evaluate & Score Applicant</span>';
+      }
+    }
+
+    function updateUI(data) {
+      const scoreElem = document.getElementById('displayScore');
+      const decisionElem = document.getElementById('displayDecision');
+      const tierElem = document.getElementById('displayTier');
+      const pdElem = document.getElementById('displayPD');
+      const utilElem = document.getElementById('displayUtil');
+      const payElem = document.getElementById('displayPayRatio');
+      const delinqElem = document.getElementById('displayDelinq');
+      const adverseSection = document.getElementById('adverseSection');
+      const adverseList = document.getElementById('adverseList');
+
+      scoreElem.innerText = data.credit_score;
+      if (data.credit_score >= 700) scoreElem.style.color = '#10b981';
+      else if (data.credit_score >= 620) scoreElem.style.color = '#f59e0b';
+      else scoreElem.style.color = '#ef4444';
+
+      decisionElem.innerText = data.decision.replace(/_/g, ' ');
+      decisionElem.className = 'decision-badge status-' + data.decision;
+      tierElem.innerText = data.risk_tier + ' — ' + data.recommended_action;
+
+      pdElem.innerText = (data.probability_of_default * 100).toFixed(1) + '%';
+      utilElem.innerText = (data.calculated_features.current_utilization * 100).toFixed(1) + '%';
+      payElem.innerText = (data.calculated_features.current_pay_ratio).toFixed(2) + 'x';
+      delinqElem.innerText = data.calculated_features.num_delinquent_months_6m + ' mos';
+
+      // Adverse Action List
+      adverseList.innerHTML = '';
+      if (data.adverse_action_reasons && data.adverse_action_reasons.length > 0) {
+        adverseSection.style.display = 'block';
+        data.adverse_action_reasons.forEach(item => {
+          const li = document.createElement('li');
+          li.className = 'adverse-item';
+          li.innerHTML = `<span>• ${item.reason}</span> <span class="adverse-impact">+${item.impact.toFixed(3)} risk</span>`;
+          adverseList.appendChild(li);
+        });
+      } else {
+        adverseSection.style.display = 'none';
+      }
+    }
+
+    // Auto-run first score on page load
+    window.onload = function() {
+      handleFormSubmit();
+    };
+  </script>
+</body>
+</html>

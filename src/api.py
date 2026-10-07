@@ -14,6 +14,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from fastapi import FastAPI, HTTPException, status
+from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from engine import CreditDecisionEngine
@@ -25,8 +26,9 @@ from schemas import (
     ModelInfoResponse
 )
 
-# Global engine instance
+# Global engine instance and dashboard path
 engine: CreditDecisionEngine = None
+DASHBOARD_PATH = Path(__file__).resolve().parent / "dashboard.html"
 
 
 @asynccontextmanager
@@ -63,14 +65,15 @@ app.add_middleware(
 )
 
 
-@app.get("/", tags=["General"])
+@app.get("/", response_class=HTMLResponse, tags=["Dashboard"])
 async def root():
-    return {
-        "service": "FinTech Credit Risk Scoring Microservice",
-        "status": "online",
-        "documentation": "/docs",
-        "openapi_spec": "/openapi.json"
-    }
+    """Serves the interactive web UI dashboard."""
+    if DASHBOARD_PATH.exists():
+        return HTMLResponse(content=DASHBOARD_PATH.read_text(encoding="utf-8"), status_code=200)
+    return HTMLResponse(
+        content="<h2>Credit Scoring Microservice Online</h2><p>Visit <a href='/docs'>/docs</a></p>",
+        status_code=200
+    )
 
 
 @app.get("/health", tags=["Monitoring"])

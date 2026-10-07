@@ -22,7 +22,7 @@ def client():
 def test_root_endpoint(client):
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json()["status"] == "online"
+    assert "Credit Risk Underwriting" in response.text
 
 
 def test_health_check(client):
