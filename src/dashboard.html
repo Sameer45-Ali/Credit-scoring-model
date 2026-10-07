@@ -3,308 +3,494 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FinTech Credit Underwriting & Risk Decisioning</title>
+  <title>AUREUS | Luxury AI Credit Underwriting & Risk Intelligence</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b0f19;
-      --card-bg: #131b2e;
-      --card-border: #1e293b;
-      --primary: #3b82f6;
-      --primary-hover: #2563eb;
+      --bg: #06070a;
+      --card-bg: rgba(14, 17, 24, 0.85);
+      --card-border: rgba(212, 175, 55, 0.18);
+      --card-border-hover: rgba(212, 175, 55, 0.4);
+      --gold-primary: #d4af37;
+      --gold-light: #f3e5ab;
+      --gold-bright: #ffd700;
+      --gold-gradient: linear-gradient(135deg, #f5d77f 0%, #d4af37 50%, #aa7c11 100%);
+      --gold-glow: rgba(212, 175, 55, 0.25);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --success: #10b981;
-      --success-bg: rgba(16, 185, 129, 0.15);
-      --warning: #f59e0b;
-      --warning-bg: rgba(245, 158, 11, 0.15);
-      --danger: #ef4444;
-      --danger-bg: rgba(239, 68, 68, 0.15);
+      --text-gold: #e2c974;
+      --emerald-luxury: #10b981;
+      --ruby-luxury: #f43f5e;
+      --amber-luxury: #f59e0b;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 50% -10%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 100% 80%, rgba(20, 24, 38, 0.8) 0%, transparent 50%),
+        radial-gradient(circle at 0% 50%, rgba(15, 18, 28, 0.8) 0%, transparent 50%);
+      background-attachment: fixed;
       color: var(--text-main);
-      padding: 2rem 1.5rem;
+      padding: 3rem 1.5rem;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .container {
-      max-width: 1200px;
+      max-width: 1220px;
       width: 100%;
     }
+
+    /* Luxury Header */
     header {
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
       gap: 0.5rem;
-    }
-    .badge-pill {
-      align-self: flex-start;
-      background: rgba(59, 130, 246, 0.15);
-      color: #60a5fa;
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      padding: 0.25rem 0.75rem;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 0.35rem 1rem;
       border-radius: 9999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      color: var(--gold-light);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
     }
+
+    .brand-badge::before {
+      content: "✦";
+      color: var(--gold-primary);
+    }
+
     h1 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      font-family: 'Cinzel', serif;
+      font-size: 2.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      background: linear-gradient(180deg, #ffffff 30%, #d4af37 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 35px rgba(212, 175, 55, 0.2);
     }
+
     p.subtitle {
       color: var(--text-muted);
-      font-size: 1rem;
-      max-width: 750px;
-      line-height: 1.5;
+      font-size: 1.05rem;
+      max-width: 720px;
+      line-height: 1.6;
+      font-weight: 300;
     }
+
+    /* VIP Presets Toolbar */
     .presets-bar {
-      background: var(--card-bg);
+      background: rgba(15, 18, 27, 0.65);
+      backdrop-filter: blur(16px);
       border: 1px solid var(--card-border);
-      padding: 1rem 1.25rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
+      padding: 0.9rem 1.5rem;
+      border-radius: 16px;
+      margin-bottom: 2.25rem;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 1rem;
       flex-wrap: wrap;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
     }
-    .presets-bar span {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-    .btn-preset {
-      background: #1e293b;
-      border: 1px solid #334155;
-      color: #e2e8f0;
-      padding: 0.45rem 0.9rem;
-      border-radius: 8px;
-      cursor: pointer;
+
+    .presets-title {
       font-size: 0.85rem;
       font-weight: 600;
-      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-gold);
       display: flex;
       align-items: center;
       gap: 0.4rem;
     }
-    .btn-preset:hover {
-      background: #334155;
-      border-color: #475569;
-      color: #ffffff;
-      transform: translateY(-1px);
+
+    .presets-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
     }
+
+    .btn-preset {
+      background: rgba(22, 27, 40, 0.8);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      color: #e2e8f0;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-preset:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold-primary);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Main Grid */
     .grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
       gap: 2rem;
     }
-    @media (max-width: 900px) {
+
+    @media (max-width: 950px) {
       .grid { grid-template-columns: 1fr; }
     }
+
+    /* Luxury Cards */
     .card {
       background: var(--card-bg);
+      backdrop-filter: blur(24px);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 1.75rem;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      transition: border-color 0.3s ease;
     }
+
+    .card:hover {
+      border-color: var(--card-border-hover);
+    }
+
     .card-title {
-      font-size: 1.2rem;
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
       font-weight: 700;
-      margin-bottom: 1.25rem;
+      letter-spacing: 0.05em;
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      border-bottom: 1px solid #1e293b;
-      padding-bottom: 0.75rem;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      padding-bottom: 1rem;
     }
+
+    .card-title small {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0;
+    }
+
+    /* Form Styles */
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.25rem;
     }
+
     .form-group {
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
     }
+
     .form-group.full-width {
       grid-column: 1 / -1;
     }
+
     label {
       font-size: 0.85rem;
       font-weight: 600;
       color: #cbd5e1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+
     label small {
-      color: var(--text-muted);
+      color: #64748b;
       font-weight: 400;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
     }
+
     input, select {
-      background: #0b0f19;
-      border: 1px solid #27354f;
-      border-radius: 8px;
-      color: #fff;
-      padding: 0.65rem 0.85rem;
+      background: rgba(8, 10, 15, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: #f8fafc;
+      padding: 0.75rem 0.95rem;
       font-size: 0.95rem;
       font-family: inherit;
       outline: none;
-      transition: border-color 0.2s;
+      transition: all 0.25s ease;
     }
+
     input:focus, select:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+      background: rgba(12, 15, 22, 0.95);
     }
+
+    select option {
+      background: #0f121b;
+      color: #fff;
+    }
+
+    /* Luxury Gold Submit Button */
     .btn-submit {
-      margin-top: 1.5rem;
+      margin-top: 1.75rem;
       width: 100%;
-      background: var(--primary);
-      color: white;
+      background: var(--gold-gradient);
+      color: #0b0d13;
       border: none;
-      padding: 0.85rem;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 1rem;
+      padding: 0.95rem;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
+      box-shadow: 0 6px 25px rgba(212, 175, 55, 0.3);
     }
+
     .btn-submit:hover {
-      background: var(--primary-hover);
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.45);
+      filter: brightness(1.08);
     }
-    /* Results Styles */
+
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    /* Luxury Results Panel */
     .result-container {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
     }
+
     .score-hero {
       text-align: center;
-      background: #0b0f19;
-      border-radius: 14px;
-      border: 1px solid #1e293b;
-      padding: 1.75rem 1rem;
+      background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.08) 0%, rgba(9, 11, 16, 0.9) 80%);
+      border-radius: 16px;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 2rem 1.25rem;
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
+      overflow: hidden;
     }
+
+    .score-hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+    }
+
+    .score-label-top {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-gold);
+    }
+
     .score-value {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 4rem;
-      font-weight: 800;
+      font-family: 'Cinzel', serif;
+      font-size: 4.5rem;
+      font-weight: 700;
       line-height: 1;
-      margin: 0.5rem 0;
-      color: #60a5fa;
+      margin: 0.75rem 0 0.25rem 0;
+      color: var(--gold-light);
+      text-shadow: 0 0 35px rgba(212, 175, 55, 0.4);
     }
+
     .score-range {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
+      letter-spacing: 0.05em;
     }
+
     .decision-badge {
-      display: inline-block;
-      padding: 0.5rem 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.6rem;
       border-radius: 9999px;
       font-weight: 800;
-      font-size: 1.1rem;
-      letter-spacing: 0.03em;
-      margin-top: 1rem;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      margin-top: 1.25rem;
       text-transform: uppercase;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
-    .status-APPROVED { background: var(--success-bg); color: var(--success); border: 1px solid var(--success); }
-    .status-APPROVED_WITH_CONDITIONS { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning); }
-    .status-MANUAL_REVIEW { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning); }
-    .status-REJECTED { background: var(--danger-bg); color: var(--danger); border: 1px solid var(--danger); }
+
+    .status-APPROVED {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
+    }
+
+    .status-APPROVED_WITH_CONDITIONS {
+      background: rgba(245, 158, 11, 0.12);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.15);
+    }
+
+    .status-MANUAL_REVIEW {
+      background: rgba(245, 158, 11, 0.12);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .status-REJECTED {
+      background: rgba(244, 63, 94, 0.12);
+      color: #fb7185;
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      box-shadow: 0 0 25px rgba(244, 63, 94, 0.2);
+    }
 
     .risk-tier-text {
       color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-top: 0.5rem;
+      font-size: 0.92rem;
+      margin-top: 0.75rem;
+      font-weight: 400;
+      line-height: 1.4;
     }
+
+    /* Metric Grid */
     .metrics-summary {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
     }
+
     .metric-box {
-      background: #0b0f19;
-      padding: 1rem;
-      border-radius: 10px;
-      border: 1px solid #1e293b;
+      background: rgba(8, 10, 16, 0.7);
+      padding: 1.1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
     }
+
     .metric-label {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
-      margin-bottom: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
     }
+
     .metric-val {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 700;
       font-family: 'JetBrains Mono', monospace;
+      color: var(--gold-light);
     }
+
+    /* Adverse Action Box */
     .adverse-section {
-      background: rgba(239, 68, 68, 0.08);
-      border: 1px solid rgba(239, 68, 68, 0.25);
-      border-radius: 12px;
-      padding: 1.25rem;
+      background: rgba(244, 63, 94, 0.06);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      border-radius: 14px;
+      padding: 1.35rem;
     }
+
     .adverse-title {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 700;
-      color: #f87171;
+      color: #fb7185;
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
+
     .adverse-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
+
     .adverse-item {
-      font-size: 0.88rem;
-      color: #fca5a5;
-      background: rgba(0, 0, 0, 0.25);
-      padding: 0.5rem 0.75rem;
-      border-radius: 6px;
+      font-size: 0.86rem;
+      color: #fecdd3;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid rgba(244, 63, 94, 0.15);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      line-height: 1.4;
     }
+
     .adverse-impact {
       font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
-      font-size: 0.8rem;
-      color: #f87171;
+      font-size: 0.78rem;
+      color: #fda4af;
+      background: rgba(244, 63, 94, 0.18);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      white-space: nowrap;
     }
+
+    /* Footer */
     .nav-links {
-      margin-top: 2rem;
+      margin-top: 3rem;
       text-align: center;
-      font-size: 0.9rem;
-      color: var(--text-muted);
+      font-size: 0.85rem;
+      color: #64748b;
     }
+
     .nav-links a {
-      color: #60a5fa;
+      color: var(--text-gold);
       text-decoration: none;
       font-weight: 600;
-      margin: 0 0.5rem;
+      margin: 0 0.6rem;
+      transition: color 0.2s;
     }
+
     .nav-links a:hover {
+      color: #fff;
       text-decoration: underline;
     }
   </style>
@@ -312,45 +498,50 @@
 <body>
   <div class="container">
     <header>
-      <div class="badge-pill">Production AI Microservice</div>
-      <h1>Credit Risk Underwriting & Decisioning</h1>
+      <div class="brand-badge">AUREUS &bull; Private Banking Risk Engine</div>
+      <h1>Credit Underwriting Intelligence</h1>
       <p class="subtitle">
-        Enter applicant financial metrics below or load a preset profile. 
-        The LightGBM model evaluates probability of default ($PD$), maps to FICO scores (300–850), 
-        and extracts TreeSHAP Adverse Action notices.
+        Institutional-grade AI decisioning platform. Powered by LightGBM and TreeSHAP,
+        delivering real-time default probability ($PD$), actuarial FICO score calibration, and regulatory Adverse Action transparency.
       </p>
     </header>
 
+    <!-- Luxury Presets Bar -->
     <div class="presets-bar">
-      <span>⚡ Quick Presets:</span>
-      <button class="btn-preset" onclick="loadPrimePreset()">🌟 Prime Borrower (Safe)</button>
-      <button class="btn-preset" onclick="loadNearPrimePreset()">⚖️ Near-Prime / Average</button>
-      <button class="btn-preset" onclick="loadSubprimePreset()">⚠️ Subprime Defaulter (High Risk)</button>
+      <div class="presets-title">✦ Benchmark Portfolios:</div>
+      <div class="presets-actions">
+        <button class="btn-preset" onclick="loadPrimePreset()">👑 Premier Tier (Prime)</button>
+        <button class="btn-preset" onclick="loadNearPrimePreset()">⚖️ Executive Tier (Near-Prime)</button>
+        <button class="btn-preset" onclick="loadSubprimePreset()">⚠️ Elevated Risk (Subprime)</button>
+      </div>
     </div>
 
     <div class="grid">
       <!-- Input Form Card -->
       <div class="card">
-        <div class="card-title">📝 Applicant Financial Profile</div>
+        <div class="card-title">
+          <span>Borrower Dossier</span>
+          <small>INSTITUTIONAL UNDERWRITING</small>
+        </div>
         <form id="scoringForm" onsubmit="handleFormSubmit(event)">
           <div class="form-grid">
             <div class="form-group">
-              <label>Credit Limit ($) <small>limit_balance</small></label>
-              <input type="number" id="limit_balance" value="120000" min="1000" step="1000" required />
+              <label>Revolving Line Limit ($) <small>limit_balance</small></label>
+              <input type="number" id="limit_balance" value="180000" min="1000" step="5000" required />
             </div>
 
             <div class="form-group">
               <label>Applicant Age <small>age (&ge; 18)</small></label>
-              <input type="number" id="age" value="34" min="18" max="100" required />
+              <input type="number" id="age" value="38" min="18" max="100" required />
             </div>
 
             <div class="form-group">
-              <label>Education Level</label>
+              <label>Education Accreditation</label>
               <select id="education">
-                <option value="1">1 - Graduate School</option>
-                <option value="2" selected>2 - University Degree</option>
-                <option value="3">3 - High School</option>
-                <option value="4">4 - Others</option>
+                <option value="1" selected>1 - Graduate / Doctorate</option>
+                <option value="2">2 - University Degree</option>
+                <option value="3">3 - Secondary Education</option>
+                <option value="4">4 - Other Credentials</option>
               </select>
             </div>
 
@@ -359,78 +550,81 @@
               <select id="marriage">
                 <option value="1">1 - Married</option>
                 <option value="2" selected>2 - Single</option>
-                <option value="3">3 - Others</option>
+                <option value="3">3 - Other</option>
               </select>
             </div>
 
             <div class="form-group full-width">
-              <label>Most Recent Repayment Status (September) <small>repayment_status_sept</small></label>
+              <label>Current Billing Repayment Status (Cycle 1) <small>repayment_status_sept</small></label>
               <select id="repayment_status_sept">
-                <option value="-1">Paid Duly / On-Time (-1)</option>
-                <option value="0" selected>Revolving Credit (0)</option>
-                <option value="1">Payment Delay: 1 Month (1)</option>
-                <option value="2">Payment Delay: 2 Months (2)</option>
-                <option value="3">Payment Delay: 3 Months (3)</option>
+                <option value="-1" selected>Paid Duly / On-Time (-1)</option>
+                <option value="0">Revolving Balance Maintained (0)</option>
+                <option value="1">Payment Delay: 30 Days (1)</option>
+                <option value="2">Payment Delay: 60 Days (2)</option>
+                <option value="3">Payment Delay: 90+ Days (3)</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label>Previous Month Status (August)</label>
+              <label>Prior Billing Status (Cycle 2)</label>
               <select id="repayment_status_aug">
-                <option value="-1">Paid Duly (-1)</option>
-                <option value="0" selected>Revolving Credit (0)</option>
-                <option value="1">Delay 1 Month (1)</option>
-                <option value="2">Delay 2 Months (2)</option>
+                <option value="-1" selected>Paid Duly (-1)</option>
+                <option value="0">Revolving Balance (0)</option>
+                <option value="1">Delay 30 Days (1)</option>
+                <option value="2">Delay 60 Days (2)</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label>Two Months Ago Status (July)</label>
+              <label>Historical Status (Cycle 3)</label>
               <select id="repayment_status_jul">
-                <option value="-1">Paid Duly (-1)</option>
-                <option value="0" selected>Revolving Credit (0)</option>
-                <option value="1">Delay 1 Month (1)</option>
-                <option value="2">Delay 2 Months (2)</option>
+                <option value="-1" selected>Paid Duly (-1)</option>
+                <option value="0">Revolving Balance (0)</option>
+                <option value="1">Delay 30 Days (1)</option>
+                <option value="2">Delay 60 Days (2)</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label>Current Statement Bill ($) <small>bill_amt_sept</small></label>
-              <input type="number" id="bill_amt_sept" value="4500" min="0" step="100" required />
+              <label>Current Statement Balance ($) <small>bill_amt_sept</small></label>
+              <input type="number" id="bill_amt_sept" value="4800" min="0" step="100" required />
             </div>
 
             <div class="form-group">
-              <label>Amount Paid in September ($) <small>pay_amt_sept</small></label>
-              <input type="number" id="pay_amt_sept" value="4500" min="0" step="100" required />
+              <label>Remitted Payment Amount ($) <small>pay_amt_sept</small></label>
+              <input type="number" id="pay_amt_sept" value="4800" min="0" step="100" required />
             </div>
 
             <div class="form-group">
-              <label>Average Prior Bills ($) <small>6-month estimate</small></label>
-              <input type="number" id="bill_amt_avg" value="4000" min="0" step="100" required />
+              <label>6-Month Average Statement ($)</label>
+              <input type="number" id="bill_amt_avg" value="4200" min="0" step="100" required />
             </div>
 
             <div class="form-group">
-              <label>Average Prior Payments ($) <small>6-month estimate</small></label>
-              <input type="number" id="pay_amt_avg" value="3800" min="0" step="100" required />
+              <label>6-Month Average Remittance ($)</label>
+              <input type="number" id="pay_amt_avg" value="4200" min="0" step="100" required />
             </div>
           </div>
 
           <button type="submit" class="btn-submit" id="submitBtn">
-            <span>⚡ Evaluate & Score Applicant</span>
+            <span>Execute Underwriting Model</span>
           </button>
         </form>
       </div>
 
       <!-- Live Output Card -->
       <div class="card">
-        <div class="card-title">📊 Real-Time Underwriting Decision</div>
+        <div class="card-title">
+          <span>Decisioning Verdict</span>
+          <small>QUANTITATIVE AUDIT</small>
+        </div>
         <div class="result-container" id="resultContainer">
           <div class="score-hero">
-            <div class="score-range">FICO-EQUIVALENT CREDIT SCORE</div>
+            <div class="score-label-top">ACTUARIAL CREDIT RATING</div>
             <div class="score-value" id="displayScore">---</div>
-            <div class="score-range">Standard Scoring Range: 300 to 850</div>
-            <div class="decision-badge" id="displayDecision">AWAITING EVALUATION</div>
-            <div class="risk-tier-text" id="displayTier">Click 'Evaluate' to run model</div>
+            <div class="score-range">SCORING SCALE: 300 &ndash; 850 (PDO = 40)</div>
+            <div class="decision-badge" id="displayDecision">AWAITING INPUT</div>
+            <div class="risk-tier-text" id="displayTier">Execute model to generate risk assessment</div>
           </div>
 
           <div class="metrics-summary">
@@ -439,21 +633,21 @@
               <div class="metric-val" id="displayPD">--%</div>
             </div>
             <div class="metric-box">
-              <div class="metric-label">Credit Line Utilization</div>
+              <div class="metric-label">Line Utilization</div>
               <div class="metric-val" id="displayUtil">--%</div>
             </div>
             <div class="metric-box">
-              <div class="metric-label">Payment-to-Bill Ratio</div>
+              <div class="metric-label">Payment / Bill Ratio</div>
               <div class="metric-val" id="displayPayRatio">--x</div>
             </div>
             <div class="metric-box">
-              <div class="metric-label">Delinquent Months</div>
+              <div class="metric-label">Delinquency Count</div>
               <div class="metric-val" id="displayDelinq">--</div>
             </div>
           </div>
 
           <div class="adverse-section" id="adverseSection" style="display: none;">
-            <div class="adverse-title">⚠️ Adverse Action Notices (TreeSHAP Explicability)</div>
+            <div class="adverse-title">⚠️ Adverse Action Factors (TreeSHAP Regulatory Notice)</div>
             <ul class="adverse-list" id="adverseList"></ul>
           </div>
         </div>
@@ -461,56 +655,56 @@
     </div>
 
     <div class="nav-links">
-      <span>Developer Resources:</span>
-      <a href="/docs" target="_blank">Interactive Swagger OpenAPI Docs</a> &bull;
-      <a href="/api/v1/model-info" target="_blank">Model Governance & Metrics JSON</a> &bull;
-      <a href="/health" target="_blank">Health Check API</a>
+      <span>Architectural Endpoints:</span>
+      <a href="/docs" target="_blank">OpenAPI Swagger UI</a> &bull;
+      <a href="/api/v1/model-info" target="_blank">Model Governance JSON</a> &bull;
+      <a href="/health" target="_blank">Health & Liveness Probe</a>
     </div>
   </div>
 
   <script>
     function loadPrimePreset() {
-      document.getElementById('limit_balance').value = 180000;
-      document.getElementById('age').value = 36;
+      document.getElementById('limit_balance').value = 220000;
+      document.getElementById('age').value = 40;
       document.getElementById('education').value = 1;
       document.getElementById('marriage').value = 2;
       document.getElementById('repayment_status_sept').value = -1;
       document.getElementById('repayment_status_aug').value = -1;
       document.getElementById('repayment_status_jul').value = -1;
-      document.getElementById('bill_amt_sept').value = 4000;
-      document.getElementById('pay_amt_sept').value = 4000;
-      document.getElementById('bill_amt_avg').value = 3500;
-      document.getElementById('pay_amt_avg').value = 3500;
+      document.getElementById('bill_amt_sept').value = 4500;
+      document.getElementById('pay_amt_sept').value = 4500;
+      document.getElementById('bill_amt_avg').value = 4000;
+      document.getElementById('pay_amt_avg').value = 4000;
       document.getElementById('submitBtn').click();
     }
 
     function loadNearPrimePreset() {
-      document.getElementById('limit_balance').value = 60000;
-      document.getElementById('age').value = 29;
+      document.getElementById('limit_balance').value = 65000;
+      document.getElementById('age').value = 31;
       document.getElementById('education').value = 2;
       document.getElementById('marriage').value = 2;
       document.getElementById('repayment_status_sept').value = 0;
       document.getElementById('repayment_status_aug').value = 0;
       document.getElementById('repayment_status_jul').value = 0;
-      document.getElementById('bill_amt_sept').value = 12000;
-      document.getElementById('pay_amt_sept').value = 2500;
-      document.getElementById('bill_amt_avg').value = 11000;
-      document.getElementById('pay_amt_avg').value = 2000;
+      document.getElementById('bill_amt_sept').value = 14000;
+      document.getElementById('pay_amt_sept').value = 3000;
+      document.getElementById('bill_amt_avg').value = 12500;
+      document.getElementById('pay_amt_avg').value = 2500;
       document.getElementById('submitBtn').click();
     }
 
     function loadSubprimePreset() {
       document.getElementById('limit_balance').value = 15000;
-      document.getElementById('age').value = 24;
+      document.getElementById('age').value = 25;
       document.getElementById('education').value = 3;
       document.getElementById('marriage').value = 1;
       document.getElementById('repayment_status_sept').value = 2;
       document.getElementById('repayment_status_aug').value = 2;
       document.getElementById('repayment_status_jul').value = 1;
-      document.getElementById('bill_amt_sept').value = 16000;
+      document.getElementById('bill_amt_sept').value = 16800;
       document.getElementById('pay_amt_sept').value = 0;
-      document.getElementById('bill_amt_avg').value = 14500;
-      document.getElementById('pay_amt_avg').value = 400;
+      document.getElementById('bill_amt_avg').value = 15000;
+      document.getElementById('pay_amt_avg').value = 300;
       document.getElementById('submitBtn').click();
     }
 
@@ -518,7 +712,7 @@
       if (event) event.preventDefault();
       const btn = document.getElementById('submitBtn');
       btn.disabled = true;
-      btn.innerText = 'Analyzing with LightGBM & SHAP...';
+      btn.innerText = 'Analyzing via LightGBM & TreeSHAP...';
 
       const billAvg = parseFloat(document.getElementById('bill_amt_avg').value) || 0;
       const payAvg = parseFloat(document.getElementById('pay_amt_avg').value) || 0;
@@ -566,7 +760,7 @@
         alert('Failed to score applicant: ' + err.message);
       } finally {
         btn.disabled = false;
-        btn.innerHTML = '<span>⚡ Evaluate & Score Applicant</span>';
+        btn.innerHTML = '<span>Execute Underwriting Model</span>';
       }
     }
 
@@ -582,9 +776,16 @@
       const adverseList = document.getElementById('adverseList');
 
       scoreElem.innerText = data.credit_score;
-      if (data.credit_score >= 700) scoreElem.style.color = '#10b981';
-      else if (data.credit_score >= 620) scoreElem.style.color = '#f59e0b';
-      else scoreElem.style.color = '#ef4444';
+      if (data.credit_score >= 700) {
+        scoreElem.style.color = '#f3e5ab';
+        scoreElem.style.textShadow = '0 0 35px rgba(243, 229, 171, 0.5)';
+      } else if (data.credit_score >= 620) {
+        scoreElem.style.color = '#fbbf24';
+        scoreElem.style.textShadow = '0 0 30px rgba(251, 191, 36, 0.4)';
+      } else {
+        scoreElem.style.color = '#fb7185';
+        scoreElem.style.textShadow = '0 0 30px rgba(251, 113, 133, 0.4)';
+      }
 
       decisionElem.innerText = data.decision.replace(/_/g, ' ');
       decisionElem.className = 'decision-badge status-' + data.decision;
@@ -593,7 +794,7 @@
       pdElem.innerText = (data.probability_of_default * 100).toFixed(1) + '%';
       utilElem.innerText = (data.calculated_features.current_utilization * 100).toFixed(1) + '%';
       payElem.innerText = (data.calculated_features.current_pay_ratio).toFixed(2) + 'x';
-      delinqElem.innerText = data.calculated_features.num_delinquent_months_6m + ' mos';
+      delinqElem.innerText = data.calculated_features.num_delinquent_months_6m + ' cycles';
 
       // Adverse Action List
       adverseList.innerHTML = '';
